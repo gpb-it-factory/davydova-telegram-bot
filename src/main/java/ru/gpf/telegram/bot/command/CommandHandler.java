@@ -1,5 +1,7 @@
 package ru.gpf.telegram.bot.command;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -19,13 +21,16 @@ import static ru.gpf.telegram.bot.command.Commands.*;
 public class CommandHandler {
 
 
+    private static final Logger log = LoggerFactory.getLogger(CommandHandler.class);
     private final Map<String, Command> commands;
 
     public CommandHandler(@Autowired StartCommand startCommand,
-                          @Autowired PingCommand pinCommand) {
+                          @Autowired PingCommand pinCommand,
+                          @Autowired RegisterCommand registerCommand) {
         this.commands = Map.of(
                 START_COMMAND, startCommand,
-                PING_COMMAND, pinCommand
+                PING_COMMAND, pinCommand,
+                REGISTER_COMMAND, registerCommand
         );
     }
 
@@ -33,7 +38,14 @@ public class CommandHandler {
         String command = CommandUtil.getMessageText(update);
         Command commandHandler = commands.get(command);
         if (commandHandler != null) {
-            return commandHandler.createAnswer(update);
+            try {
+                return commandHandler.createAnswer(update);
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+                long chatId = CommandUtil.getChatId(update);
+                return new SendMessage(String.valueOf(chatId), BotAnswer.getErrorMsg());
+            }
+
         } else {
             long chatId = CommandUtil.getChatId(update);
             return new SendMessage(String.valueOf(chatId), BotAnswer.getUnknownMsg());

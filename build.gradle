@@ -17,10 +17,20 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+
 	// TELEGRAM
 	implementation group: 'org.telegram', name: 'telegrambots', version: '6.9.7.1'
+
+	// WEB
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '3.3.0'
+
+	//MAPPER
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
+
 	// TEST
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '4.12.0'
+
 }
 
 tasks.named('test') {
