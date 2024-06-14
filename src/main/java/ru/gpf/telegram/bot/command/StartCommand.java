@@ -12,7 +12,7 @@ public class StartCommand implements Command {
     public SendMessage createAnswer(Update update) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(CommandUtil.getStringChatId(update));
-        sendMessage.setText(BotAnswer.getStartMsg(update.getMessage().getChat().getUserName()));
+        sendMessage.setText(BotAnswer.getStartMsg(update.getMessage().getFrom().getFirstName()));
         return sendMessage;
     }
 }

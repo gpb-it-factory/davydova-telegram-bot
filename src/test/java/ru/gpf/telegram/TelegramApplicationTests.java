@@ -1,15 +1,20 @@
 package ru.gpf.telegram;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
-@SpringBootTest
-@ActiveProfiles("test")
-class TelegramApplicationTests {
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-	@Test
-	void contextLoads() {
-	}
+class TelegramApplicationTests extends AbstractTest {
+    @Autowired
+    ApplicationContext applicationContext;
+
+    @Test
+    void contextLoads() {
+        assertNotNull(applicationContext);
+    }
 
 }
+
+
