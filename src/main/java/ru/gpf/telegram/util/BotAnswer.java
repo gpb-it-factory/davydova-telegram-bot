@@ -12,9 +12,9 @@ public class BotAnswer {
 
     private static final String UNKNOWN_ANSWER = "Очень интересно, но ничего не понятно";
 
-    private static final String REGISTER_ANSWER = "Вы успешно зарегестрированны!";
+    private static final String REGISTER_ANSWER = "Вы успешно зарегистрированы";
 
-    private static final String REGISTER_ERROR_ANSWER = "Два раза нельзя войти в одну и ту же реку и зарегестрироваться в одном и том же сервисе";
+    private static final String REGISTER_ERROR_ANSWER = "Два раза нельзя войти в одну и ту же реку и зарегистрироваться в одном и том же сервисе";
 
     private static final String ERROR_ANSWER = "Трудно в это поверить, но в нашей программе что то пошло не так";
 
@@ -24,8 +24,8 @@ public class BotAnswer {
         builder.append(userName);
         builder.append("!\n");
         builder.append("""
-                Совсем скоро Вы сможете открыть счет в нашем банке, получить 500 рублей на счет и купить все о чем вы мечтали! (ну или кофе)
-                А пока Вы можте зарегестрироваться, просто нажмите /register
+                Совсем скоро Вы сможете открыть счет в нашем банке, получить 5000 рублей на счет и купить все о чем вы мечтали!
+                А пока Вы можте зарегистрироваться, просто нажмите /register
                 """);
         return builder.toString();
     }
