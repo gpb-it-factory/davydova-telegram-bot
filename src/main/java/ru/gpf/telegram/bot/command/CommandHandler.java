@@ -14,7 +14,7 @@ import java.util.Map;
 import static ru.gpf.telegram.bot.command.Commands.*;
 
 /**
- * хранит команды, вызывет метод обработки у подходящей команды
+ * Хранит команды, вызывает метод обработки у подходящей команды
  */
 
 @Component
