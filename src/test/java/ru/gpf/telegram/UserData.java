@@ -14,7 +14,6 @@ public class UserData {
 
     public final static RegisteredUser REGISTERED_USER_SUCCESSFUL = new RegisteredUser(RegisteredStatus.REGISTERED);
     public final static RegisteredUser REGISTERED_USER_UNSUCCESSFUL = new RegisteredUser(RegisteredStatus.UNREGISTERED);
-    public final static RegisteredUser REGISTERED_USER_DUPLICATE = new RegisteredUser(RegisteredStatus.ALREADY_REGISTERED);
-
+    public final static RegisteredUser REGISTERED_USER_DUPLICATE = new RegisteredUser(RegisteredStatus.CONFLICT_REGISTERED);
 
 }

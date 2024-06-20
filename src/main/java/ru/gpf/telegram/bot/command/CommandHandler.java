@@ -26,11 +26,13 @@ public class CommandHandler {
 
     public CommandHandler(@Autowired StartCommand startCommand,
                           @Autowired PingCommand pinCommand,
-                          @Autowired RegisterCommand registerCommand) {
+                          @Autowired RegisterCommand registerCommand,
+                          @Autowired CreateAccountCommand createAccountCommand) {
         this.commands = Map.of(
                 START_COMMAND, startCommand,
                 PING_COMMAND, pinCommand,
-                REGISTER_COMMAND, registerCommand
+                REGISTER_COMMAND, registerCommand,
+                CREATE_ACCOUNT_COMMAND, createAccountCommand
         );
     }
 

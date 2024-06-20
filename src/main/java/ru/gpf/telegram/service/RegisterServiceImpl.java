@@ -23,7 +23,7 @@ public class RegisterServiceImpl implements RegisterService {
         RegisteredUser registeredUser = userGateway.registerUser(user);
         return switch (registeredUser.getRegisteredStatus()) {
             case REGISTERED -> BotAnswer.getRegisterMsg();
-            case ALREADY_REGISTERED -> BotAnswer.getRegisterErrorMsg();
+            case CONFLICT_REGISTERED -> BotAnswer.getRegisterErrorMsg();
             default -> BotAnswer.getErrorMsg();
         };
     }
