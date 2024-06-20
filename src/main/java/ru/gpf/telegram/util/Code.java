@@ -4,5 +4,5 @@ public final class Code {
     private Code() {
     }
 
-    public static final String ALREADY_REGISTERED = "409";
+    public static final String CONFLICT = "409";
 }

@@ -28,12 +28,11 @@ public class UserGatewayImpl implements UserGateway {
 
     @Override
     public RegisteredUser registerUser(User user) {
-        User userEntity = mapper.map(user, User.class);
-        Optional<ErrorEntity> errorEntity = userWebClient.registerUser(mapper.map(userEntity, UserEntity.class));
+        Optional<ErrorEntity> errorEntity = userWebClient.registerUser(mapper.map(user, UserEntity.class));
         if (errorEntity.isPresent()) {
-            if (Objects.equals(errorEntity.get().getCode(), Code.ALREADY_REGISTERED)) {
+            if (Objects.equals(errorEntity.get().getCode(), Code.CONFLICT)) {
                 log.warn(String.valueOf(errorEntity.get()));
-                return new RegisteredUser(RegisteredStatus.ALREADY_REGISTERED);
+                return new RegisteredUser(RegisteredStatus.CONFLICT_REGISTERED);
             } else {
                 log.error(String.valueOf(errorEntity.get()));
                 return new RegisteredUser(RegisteredStatus.UNREGISTERED);

@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 public class ClientProperties {
     private final String url;
     private final String registerPath;
+    private final String createAccountPath;
     private final int port;
 
     {
         url = "http://localhost:1111";
         registerPath = "/v1/api/auth";
+        createAccountPath = "/v1/api/accounts";
         port = 1111;
     }
 
@@ -26,6 +28,10 @@ public class ClientProperties {
 
     public String getRegisterPath() {
         return registerPath;
+    }
+
+    public String getCreateAccountPath() {
+        return createAccountPath;
     }
 
     public int getPort() {
