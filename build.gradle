@@ -27,12 +27,18 @@ dependencies {
 	//MAPPER
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
 
-	// TEST
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '4.12.0'
+    //MONITORING
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.3.1'
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.3.0'
+
+
+    // TEST
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: '4.12.0'
 
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

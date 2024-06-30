@@ -4,15 +4,18 @@ import org.springframework.stereotype.Service;
 import ru.gpf.telegram.domain.RegisteredUser;
 import ru.gpf.telegram.domain.User;
 import ru.gpf.telegram.gateway.UserGateway;
+import ru.gpf.telegram.monitoring.RegisterMetricsService;
 import ru.gpf.telegram.util.BotAnswer;
 
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
     private final UserGateway userGateway;
+    private final RegisterMetricsService registerMetricsService;
 
-    public RegisterServiceImpl(UserGateway userGateway) {
+    public RegisterServiceImpl(UserGateway userGateway, RegisterMetricsService registerMetricsService) {
         this.userGateway = userGateway;
+        this.registerMetricsService = registerMetricsService;
     }
 
     @Override
@@ -21,10 +24,16 @@ public class RegisterServiceImpl implements RegisterService {
             return BotAnswer.getErrorMsg();
         }
         RegisteredUser registeredUser = userGateway.registerUser(user);
-        return switch (registeredUser.getRegisteredStatus()) {
-            case REGISTERED -> BotAnswer.getRegisterMsg();
-            case CONFLICT_REGISTERED -> BotAnswer.getRegisterErrorMsg();
-            default -> BotAnswer.getErrorMsg();
-        };
+        String result;
+        switch (registeredUser.getRegisteredStatus()) {
+            case REGISTERED -> {
+                registerMetricsService.incrementRegisterMetric();
+                result = BotAnswer.getRegisterMsg();
+            }
+            case CONFLICT_REGISTERED -> result = BotAnswer.getRegisterErrorMsg();
+            default -> result = BotAnswer.getErrorMsg();
+        }
+
+        return result;
     }
 }
