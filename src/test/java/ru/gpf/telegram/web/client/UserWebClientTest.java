@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +24,6 @@ class UserWebClientTest extends AbstractWebClientTest {
     private RestTemplate restTemplate;
 
     @Autowired
-    @Qualifier("testProperties")
     private ClientProperties clientProperties;
 
 

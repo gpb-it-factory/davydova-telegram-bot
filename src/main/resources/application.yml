@@ -2,6 +2,9 @@ bot:
   name: "alinaGPFBot"
   token: ${TOKEN_ENV}
 
+ms:
+  url: "http://host.docker.internal:7070"
+
 logging:
   file:
     name: "./logs/app.log"

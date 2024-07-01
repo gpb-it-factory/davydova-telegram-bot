@@ -1,14 +1,16 @@
 package ru.gpf.telegram.web.client.util;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public final class ClientProperties {
-    private final String url;
+    @Value("${ms.url}")
+    private String url;
+
     private final String path;
 
     {
-        url = "http://host.docker.internal:7070";
         path = "/v1/api";
     }
 
@@ -26,5 +28,9 @@ public final class ClientProperties {
 
     public String getCreateAccountPath() {
         return path + "/accounts";
+    }
+
+    public String getBalancePath(Long id) {
+        return path + "/users/" + id + "/balance";
     }
 }

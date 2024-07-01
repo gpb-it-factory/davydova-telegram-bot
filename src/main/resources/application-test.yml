@@ -1,3 +1,6 @@
 bot:
   name: "alinaGPFBot"
   token: "supersecerettoken"
+
+ms:
+  url: "http://localhost:1111"
