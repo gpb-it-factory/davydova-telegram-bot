@@ -1,0 +1,6 @@
+{
+  "message": "User does not exist",
+  "type": "Bad request",
+  "code": "409",
+  "traceId": "20ace0ad-fccf-43d1-9a56-4198fd3495b6"
+}

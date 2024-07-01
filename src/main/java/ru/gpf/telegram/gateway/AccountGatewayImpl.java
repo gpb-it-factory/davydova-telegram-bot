@@ -38,4 +38,16 @@ public class AccountGatewayImpl implements AccountGateway {
         }
         return new RegisteredAccount(RegisteredStatus.REGISTERED);
     }
+
+    @Override
+    public Balance getBalance(Long userTelegramId) {
+        Balance balance = accountWebClient.getBalance(userTelegramId);
+        if (balance!=null && balance.getBalance()!=null) {
+            if (balance.getBalance().scale()>2) {
+                log.error("Balance of user {} is contains more than 2 decimal places", userTelegramId);
+                throw new RuntimeException("Incorrect balance, more than 2 decimal places");
+            }
+        }
+        return accountWebClient.getBalance(userTelegramId);
+    }
 }

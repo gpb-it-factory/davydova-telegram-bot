@@ -18,7 +18,7 @@ public class MockWebServerUtil {
         mockWebServer.enqueue(
                 new MockResponse().setResponseCode(401)
                         .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .setBody(WebClientData.USERS_ALREADY_REGISTER_JSON)
+                        .setBody(JsonData.getUnknownErrorResponse())
         );
     }
 
@@ -27,6 +27,30 @@ public class MockWebServerUtil {
         mockWebServer.enqueue(
                 new MockResponse().setResponseCode(200)
                         .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+        );
+    }
+
+    public static void runBalanceBody200(MockWebServer mockWebServer) {
+        mockWebServer.enqueue(
+                new MockResponse().setResponseCode(200)
+                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .setBody(JsonData.getBalanceResponse())
+        );
+    }
+
+    public static void runBalanceBody400UserNotFound(MockWebServer mockWebServer) {
+        mockWebServer.enqueue(
+                new MockResponse().setResponseCode(400)
+                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .setBody(JsonData.getBalanceUserNotExistErrorResponse())
+        );
+    }
+
+    public static void runBalanceBody400AccountNotFound(MockWebServer mockWebServer) {
+        mockWebServer.enqueue(
+                new MockResponse().setResponseCode(400)
+                        .setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .setBody(JsonData.getBalanceAccountNotExistErrorResponse())
         );
     }
 }
