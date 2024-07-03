@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import ru.gpf.telegram.gateway.AccountGatewayImpl;
+import ru.gpf.telegram.monitoring.CreateAccountMetricService;
 import ru.gpf.telegram.util.BotAnswer;
 
 import static ru.gpf.telegram.AccountData.*;
@@ -17,7 +18,7 @@ class CreateAccountServiceImplTest {
     @BeforeEach
     void setUp() {
         accountGateway = Mockito.mock(AccountGatewayImpl.class);
-        createAccountService = new CreateAccountServiceImpl(accountGateway);
+        createAccountService = new CreateAccountServiceImpl(accountGateway, Mockito.mock(CreateAccountMetricService.class));
     }
 
     @Test

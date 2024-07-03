@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import ru.gpf.telegram.UserData;
 import ru.gpf.telegram.gateway.UserGateway;
+import ru.gpf.telegram.monitoring.RegisterMetricsService;
 import ru.gpf.telegram.util.BotAnswer;
 
 
@@ -14,7 +15,7 @@ class RegisterServiceImplTest {
     void checkRegisterSuccess() {
         UserGateway userGateway = Mockito.mock(UserGateway.class);
         Mockito.when(userGateway.registerUser(Mockito.any())).thenReturn(UserData.REGISTERED_USER_SUCCESSFUL);
-        RegisterServiceImpl userService = new RegisterServiceImpl(userGateway);
+        RegisterServiceImpl userService = new RegisterServiceImpl(userGateway, Mockito.mock(RegisterMetricsService.class));
 
         String answer = userService.registerUser(UserData.USER);
 
@@ -25,7 +26,7 @@ class RegisterServiceImplTest {
     void checkUserAlreadyWasRegistered() {
         UserGateway userGateway = Mockito.mock(UserGateway.class);
         Mockito.when(userGateway.registerUser(Mockito.any())).thenReturn(UserData.REGISTERED_USER_DUPLICATE);
-        RegisterServiceImpl userService = new RegisterServiceImpl(userGateway);
+        RegisterServiceImpl userService = new RegisterServiceImpl(userGateway, Mockito.mock(RegisterMetricsService.class));
 
         String answer = userService.registerUser(UserData.USER);
 
@@ -36,7 +37,7 @@ class RegisterServiceImplTest {
     void checkErrorRegistered() {
         UserGateway userGateway = Mockito.mock(UserGateway.class);
         Mockito.when(userGateway.registerUser(Mockito.any())).thenReturn(UserData.REGISTERED_USER_UNSUCCESSFUL);
-        RegisterServiceImpl userService = new RegisterServiceImpl(userGateway);
+        RegisterServiceImpl userService = new RegisterServiceImpl(userGateway, Mockito.mock(RegisterMetricsService.class));
 
         String answer = userService.registerUser(UserData.USER);
 
